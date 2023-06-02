@@ -1,0 +1,60 @@
+﻿@model IEnumerable<BookLibrary.Models.LoanList>
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Customers)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Books)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LoanDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DueDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Returned)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customers.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Books.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LoanDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DueDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Returned)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.LoanListId">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.LoanListId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <a asp-controller="Customers" asp-action="Index">Back to List</a>
+</div>
+

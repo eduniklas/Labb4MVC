@@ -1,0 +1,41 @@
+﻿@model List<Customer>
+
+<h3>Search Customers</h3>
+
+@using (Html.BeginForm("Search", "Customers", FormMethod.Get))
+{
+    <input class="input-group-text" type="text" name="searchTerm" placeholder="Search by name" />
+    <input class="btn btn-info" type="submit" value="Search" />
+}
+
+@if (Model != null && Model.Count > 0)
+{
+    <br/>
+    <h4>Search Results</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    Customer
+                </th>
+                <th class="col-5">
+                    Number of Loans
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in Model)
+            {
+                <tr>
+                    <td>@customer.FullName</td>
+                    <td>@customer.Loans.Count</td>
+                </tr>   
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <br/>
+    <p>No results found</p>
+}
